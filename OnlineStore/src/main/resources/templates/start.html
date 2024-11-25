@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Полный каталог</title>
+        <link rel="stylesheet" type="templates/style.css">
+</head>
+<body style="background:#FFFFE0">
+    <table border ="1" style="width:600px">
+        <caption><em><h2><strong>ПОЛНЫЙ ПЕРЕЧЕНЬ ТОВАРОВ</strong></h2></em></caption>
+        <tr>
+            <th><h4><em>id</em></h4></th>
+            <th><h4><em>Наименование товара</em></h4></th>
+            <th><h4><em>Стоимость</em></h4></th>
+        </tr>
+        <tr th:each="line : ${tab_product}">
+            <td  th:text="${line.id}"> </td>
+            <td>
+                <a th:href="@{/line/{id}(id=${line.id})}"
+                   th:text="${line.name}"></a>
+            </td>
+            <td  th:text="${line.price}"> </td>
+
+
+        </tr>
+    </table>
+
+
+
+</body>
+</html>
