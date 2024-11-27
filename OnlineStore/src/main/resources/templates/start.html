@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Полный каталог</title>
-        <link rel="stylesheet" type="templates/style.css">
+        <link rel="stylesheet" type="templates/css"/>
 </head>
 <body style="background:#FFFFE0">
     <table border ="1" style="width:600px">
@@ -12,20 +12,25 @@
             <th><h4><em>id</em></h4></th>
             <th><h4><em>Наименование товара</em></h4></th>
             <th><h4><em>Стоимость</em></h4></th>
+            <td colspan="2" style="text-align:center"><h4><em>      Действие</em></h4></td>
         </tr>
-        <tr th:each="line : ${tab_product}">
-            <td  th:text="${line.id}"> </td>
+        <tr th:each="line : ${tab_line}">
+            <td  th:text="${line.id}" > </td>
             <td>
                 <a th:href="@{/line/{id}(id=${line.id})}"
                    th:text="${line.name}"></a>
             </td>
-            <td  th:text="${line.price}"> </td>
-
-
+            <td  th:text="${line.price}" style="text-align:center"> </td>
+            <td>
+                <a th:href="@{'/addProd?id=' + ${line.id}}"> Добавить</a>
+            </td>
+            <td>
+                <a th:href="@{'/delete?id=' + ${line.id}}"> Удалить</a>
+            </td>
         </tr>
     </table>
-
-
-
+<br>
+    <p th:if="${tab_line == null}"></p>
+    <a href="/basket">Корзина</a>
 </body>
 </html>

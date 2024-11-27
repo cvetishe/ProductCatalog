@@ -12,11 +12,12 @@ import java.util.Scanner;
 @Component
 public class ProductService {
     List<Products> productsList = new ArrayList<>();
-    List<Basket> basketList = new ArrayList<>();
+    List<Basket> basketList= new ArrayList<>();
 
     public List<Products> fileRead(String file) throws IOException {
         try {
             Scanner read = new Scanner(new File(file));
+            int idImg = 0;
             int count = 0;
             String name;
             int price;
@@ -25,7 +26,8 @@ public class ProductService {
                 name = line.substring(0,line.lastIndexOf(" ")+1);
                 price = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
                 count++;
-                productsList.add(new Products(count,name,price));
+                idImg++;
+                productsList.add(new Products(count,name,price,idImg));
                 System.out.println("файл загружен");
             }
         }catch(FileNotFoundException e){
@@ -34,9 +36,25 @@ public class ProductService {
         return productsList;
     }
 
+//    public List<Products> getProductList() {    // не работает в общем листе, если удалить,
+//        if (!productsList.isEmpty()){        //то снова подгружает
+//            productsList.clear();
+//        }
+//        fileRead("price.txt");
+//        return productsList;
+//    }
+
     public List<Products> getProductList() throws IOException {
-        fileRead("price.txt");
-        return productsList;
+        if (productsList.isEmpty()) {
+            fileRead("price.txt");
+            return productsList;
+        }else{
+            return productsList;
+        }
+    }
+
+    public List<Basket> getBasketList(){
+            return basketList;
     }
 
     public Products getProductId(int id) {
@@ -48,25 +66,16 @@ public class ProductService {
         return null;
     }
 
-    public void deleteProductId(int id){
+    public void deleteProdId(int id){
         Products p = getProductId(id);
         if(p!=null)
             productsList.remove(p);
     }
 
-//    public  Basket getBasketProd(){
-//    }
-
-//    public void delProdBasket(int id){
-//        Basket b = ????(id);
-//        if(b!=null)
-//            productsList.remove(b);
-//    } удаление из корзины
-
-
-
-
-
-
-
+    public Basket addProdId(int id) {
+        Products p = getProductId(id);
+        Basket b = new Basket(p.id,p.name,p.price);
+        basketList.add(b);
+        return b;
+    }
 }

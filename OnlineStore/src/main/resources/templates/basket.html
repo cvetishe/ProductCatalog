@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Корзина</title>
 </head>
 <body>
-
+<form action="/basket">
+<table border ="1" style="width:600px">
+    <caption><em><h2><strong>Товары в корзине: </strong></h2></em></caption>
+    <tr>
+        <th><h4><em>id</em></h4></th>
+        <th><h4><em>Наименование товара</em></h4></th>
+        <th><h4><em>Стоимость</em></h4></th>
+    </tr>
+    <tr th:each="line : ${tab_line}">
+        <td  th:text="${line.id}" > </td>
+        <td th:text="${line.name}"> </td>
+        <td  th:text="${line.price}" style="text-align:center"> </td>
+    </tr>
+</table>
+</form>
+<br>
+<br>
+<a href="/start"> Назад </a>
 </body>
 </html>

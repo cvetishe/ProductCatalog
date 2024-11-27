@@ -2,10 +2,10 @@ package com.example.OnlineStore;
 
 
 public class Products {
-    ProductService productServise;
     String name;
     int price;
     int id;
+    int idImg;
 
 
     public Products(int id, String name, int price) {
@@ -17,8 +17,11 @@ public class Products {
         this.id= id;
     }
 
-    public void setName(String name) {
+    public Products(int id, String name, int price, int idImg) {
         this.name = name;
+        this.price = price;
+        this.id = id;
+        this.idImg = idImg;
     }
 
     public String getName() {
@@ -29,15 +32,12 @@ public class Products {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdImg() {
+        return idImg;
     }
 
     @Override
