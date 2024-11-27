@@ -16,18 +16,20 @@ public class ProductService {
 
     public List<Products> fileRead(String file) throws IOException {
         try {
-            Scanner read = new Scanner(new File(file));
-            int idImg = 0;
+            Scanner read = new Scanner(new File(file));;
             int count = 0;
             String name;
             int price;
+            String description;
             while (read.hasNext()){
                 String line = read.nextLine();
-                name = line.substring(0,line.lastIndexOf(" ")+1);
-                price = Integer.parseInt(line.substring(line.lastIndexOf(" ")+1));
+                name = line.substring(0,line.indexOf("-"));
+                description = line.substring(line.indexOf("-") + 1,line.lastIndexOf("-"));
+                price = Integer.parseInt(line.substring(line.lastIndexOf("-")+1).trim());
                 count++;
-                idImg++;
-                productsList.add(new Products(count,name,price,idImg));
+                String str = Integer.toString(count);
+                String img = "/images/" + str + ".jpg";
+                productsList.add(new Products(count,name,price,img,description));
                 System.out.println("файл загружен");
             }
         }catch(FileNotFoundException e){
@@ -35,6 +37,8 @@ public class ProductService {
         }
         return productsList;
     }
+
+
 
 //    public List<Products> getProductList() {    // не работает в общем листе, если удалить,
 //        if (!productsList.isEmpty()){        //то снова подгружает

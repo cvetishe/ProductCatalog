@@ -4,12 +4,18 @@ public class Basket {
     String name;
     int price;
     int id;
-    int idImg;
+    String img;
 
     public Basket(int id, String name, int price) {
        this.id = id;
        this.name = name;
        this.price = price;
+    }
+    public Basket(int id, String name, int price, String img) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.img = img;
     }
 
     public String getName() {
@@ -24,7 +30,7 @@ public class Basket {
         return id;
     }
 
-    public int getIdImg() {
-        return idImg;
+    public String getImg() {
+        return img;
     }
 }

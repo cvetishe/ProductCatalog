@@ -8,7 +8,12 @@
 <h3>Описание товра</h3>
 <p>Хороший товар берите</p>
 <div>
+    <h3 th:text="${line.name}"></h3>
     <p>id: <span th:text="${line.id}"></span></p>
+    <p th:if="${line.description != 0}"></p>
+    <span th:text="${line.description}"></span>
+    <p th:if="${line.img != 0}" ></p>
+    <img th:src="@{${line.img}}" width="200" height="auto">
 </div>
 <a href="/start"> Назад </a>
 </body>

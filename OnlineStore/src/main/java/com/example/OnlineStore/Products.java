@@ -5,7 +5,8 @@ public class Products {
     String name;
     int price;
     int id;
-    int idImg;
+    String img;
+    String description;
 
 
     public Products(int id, String name, int price) {
@@ -17,11 +18,16 @@ public class Products {
         this.id= id;
     }
 
-    public Products(int id, String name, int price, int idImg) {
+    public Products(int id, String name, int price, String img, String description) {
         this.name = name;
         this.price = price;
         this.id = id;
-        this.idImg = idImg;
+        this.img = img;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getName() {
@@ -36,17 +42,17 @@ public class Products {
         return id;
     }
 
-    public int getIdImg() {
-        return idImg;
+    public String getImg() {
+        return img;
     }
 
     @Override
     public String toString() {
         return "Products{" +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", price=" + price +
                 ", id=" + id +
+                ", description='" + description + '\'' +
                 '}';
     }
-
 }
